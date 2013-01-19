@@ -12,7 +12,8 @@ import reactivemongo.bson._
 import reactivemongo.bson.handlers._
 
 
-case class Image(
+
+case class Image (
 	id: Option[BSONObjectID],
 	data: String,
 	title: String,
@@ -20,9 +21,10 @@ case class Image(
 	publisher: String,
 	creationDate: Option[DateTime],
 	updateDate: Option[DateTime]
-)
+) 
 
-object Image {
+
+object ImageHandlers {
 	implicit object ImageBSONReader extends BSONReader[Image] {
 		def fromBSON(document: BSONDocument): Image = {
 			val doc = document.toTraversable
