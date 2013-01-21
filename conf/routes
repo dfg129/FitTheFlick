@@ -5,5 +5,7 @@
 # Home page
 GET     /                           com.mobileomega.controllers.Application.index
 
+GET     /test                           com.mobileomega.controllers.Application.test
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

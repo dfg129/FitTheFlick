@@ -41,12 +41,16 @@ object Application extends Controller  with MongoController {
     }
   }
 
+  def test = Action {
+    val i=0
+  	Ok("to here")
+  }
+
   def index = Action { implicit request =>
   	Async {
   		implicit val reader = com.mobileomega.models.ImageHandlers.ImageBSONReader
 
   		val query = BSONDocument("$query" -> BSONDocument())
-  		System.out.println("### " + query)
   		val found = collection.find(query) 
   		found.toList.map(images => Ok(views.html.index(images)))
   	}
