@@ -15,20 +15,14 @@
         <p>No images available yet.</p>
      }
      else {
-     <ul>
-      @images.map { image =>
-
       <div class="box">
-      	<div class="A1"> <li><a href=# onclick='loadImage("@(image.data)")')>@image.title</a></div>
-      	<div class="A2"> test2 </div>
-      	<div class="A3"> test3 </div>
-      	<div class="B1"> test1 </div>
-      	<div class="B2"> test2 </div>
-      	<div class="B3"> test3 </div>
-      	<div class="C1"> test1 </div>
-      	<div class="C2"> test2 </div>
-      	<div class="C3"> test3 </div>
-      </div> 
-      }
-    }
+     @images.map { image => 
+      	<div class=  @title(image.index) + " image_load" onclick='loadImage("@image.name)")'></div>
+       }
+     </div>
+   }
+}
+
+ @title(index: String) = @{
+     "A" + index
 }

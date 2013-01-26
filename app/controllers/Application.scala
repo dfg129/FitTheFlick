@@ -1,7 +1,6 @@
 package com.mobileomega.controllers
 
 
-//import com.mobileomega.models.Image
 import play.api._
 import play.api.mvc._
 import play.api.Play.current
@@ -11,13 +10,15 @@ import scala.concurrent.{ExecutionContext, Future}
 
 
 import reactivemongo.api.gridfs._
-//import reactivemongo.api.gridfs.Implicits._
+
+
 
 // Reactive Mongo imports
 import reactivemongo.api._
 import reactivemongo.bson._
 import reactivemongo.bson.handlers.DefaultBSONHandlers.DefaultBSONDocumentWriter
 import reactivemongo.bson.handlers.DefaultBSONHandlers.DefaultBSONReaderHandler
+
 
 // Reactive Mongo plugin
 import play.modules.reactivemongo._
@@ -31,13 +32,12 @@ object Application extends Controller  with MongoController {
   val gridFS = new GridFS(db, "fs")
   gridFS.ensureIndex()
 
-  def getImageFile(id: String) = Action {
+  def getImageFile(name: String) = Action {
     Async {
-      // find the matching image, if any, and streams it to the client
-      println("getImage : " + id)
-      val docId = BSONDocument("_id" -> new BSONObjectID(id))
-      val doc = null //gridFS.find(docId)
-      serve(gridFS, doc)
+      import reactivemongo.api.gridfs.Implicits.DefaultReadFileReader
+      val doc = BSONDocument("filename" -> BSONString(name))
+      val img = gridFS.find(doc)
+      serve(gridFS, img)
     }
   }
 

@@ -12,15 +12,14 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     </head>
     <body>
-        <h1> here </h1>
         @content
 
         <script type="text/javascript">
-    	function loadImage(data) 
+    	function loadImage(name) 
     	{
-    		var look = '/image_data/' + data
-    		
-    		$('.image_load').append('<img src=' + look + ' text="Please Choose An Image" height=200 width=150>')
+    		var look = '/image_data/' + name;
+            //alert(name);
+    		$('.image_load').append('<img src=' + look + ' text="Please Choose An Image" height=100 width=100>')
     	}
     	</script>
     </body>
