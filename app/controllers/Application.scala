@@ -10,10 +10,6 @@ import scala.concurrent.{ExecutionContext, Future}
 
 
 import reactivemongo.api.gridfs._
-
-
-
-// Reactive Mongo imports
 import reactivemongo.api._
 import reactivemongo.bson._
 import reactivemongo.bson.handlers.DefaultBSONHandlers.DefaultBSONDocumentWriter
@@ -35,21 +31,18 @@ object Application extends Controller  with MongoController {
   def getImageFile(name: String) = Action {
     Async {
       import reactivemongo.api.gridfs.Implicits.DefaultReadFileReader
+      Logger.info("here")
       val doc = BSONDocument("filename" -> BSONString(name))
       val img = gridFS.find(doc)
       serve(gridFS, img)
     }
   }
 
-  def test = Action {
-    val i=0
-  	Ok("to here")
-  }
-
   def index = Action { implicit request =>
   	Async {
   		implicit val reader = com.mobileomega.models.ImageHandlers.ImageBSONReader
 
+      Logger.info("start")
   		val query = BSONDocument("$query" -> BSONDocument())
   		val found = collection.find(query) 
   		found.toList.map(images => Ok(views.html.index(images)))

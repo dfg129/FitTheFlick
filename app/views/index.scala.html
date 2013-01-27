@@ -17,7 +17,7 @@
      else {
       <div class="box">
      @images.map { image => 
-      	<div class=  @title(image.index) + " image_load" onclick='loadImage("@image.name)")'></div>
+      	<div class= "@title(image.index)" onclick='loadImage("A"+@image.index, "@image.name")'></div>
        }
      </div>
    }

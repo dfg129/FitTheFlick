@@ -15,11 +15,11 @@
         @content
 
         <script type="text/javascript">
-    	function loadImage(name) 
+    	function loadImage(clz, name) 
     	{
-    		var look = '/image_data/' + name;
-            //alert(name);
-    		$('.image_load').append('<img src=' + look + ' text="Please Choose An Image" height=100 width=100>')
+
+            $('.'+clz).empty();
+    		$('.'+clz).append('<img src=/image_data/' + name + ' text="Please Choose An Image" height=100 width=100>');
     	}
     	</script>
     </body>

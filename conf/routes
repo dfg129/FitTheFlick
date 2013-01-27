@@ -5,8 +5,6 @@
 # Home page
 GET     /                           com.mobileomega.controllers.Application.index
 
-GET     /test                       com.mobileomega.controllers.Application.test
-
 GET     /image_data/:id             com.mobileomega.controllers.Application.getImageFile(id)
 
 # Map static resources from the /public folder to the /assets URL path
